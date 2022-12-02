@@ -32,4 +32,4 @@ content-type: application/json
 
 ###
 
-GET http://localhost:3000/areas
+GET http://localhost:3000/beacon

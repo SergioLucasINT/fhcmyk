@@ -14,6 +14,7 @@ app.set('view engine', 'ejs');
 const userCred = require('./tools/routes/userCred.js');
 const editAreas = require('./tools/routes/editAreas.js');
 const configSteps = require('./tools/routes/configSteps.js');
+const beaconReq = require('./tools/routes/beaconReq.js');
 
 
 const port = 3000;
@@ -32,3 +33,6 @@ app.use('/edit', editAreas);
 
 // Steps page 
 app.use('/config', configSteps);
+
+// Beacon 
+app.use('/beacon', beaconReq);
