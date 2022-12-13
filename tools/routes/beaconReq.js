@@ -1,20 +1,7 @@
 const express = require('express'); 
 const app = express();
-const sqlite3 = require('sqlite3').verbose();
 const router = express.Router();
 const bodyParser = require('body-parser');
-
-// Functions
-const functions = require('../functions/crud');
-const { render } = require('ejs');
-
-var query_data = {
-	table: '`beacons`',
-	insert_columns: '`Reg_Area`',
-};
-
-const DBPATH = 'dbUser.db';
-
 
 app.use(express.json()); 
 app.use(express.static('public'));
