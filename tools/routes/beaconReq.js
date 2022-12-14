@@ -16,10 +16,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 
 var query_data = {
-    table: '`login_auth`',
-    insert_columns: '`funcid`, `password`',
-    insert_columns2: '`funcid`, `password`, `user_creation_token`',
-    refresh_update: '`refresh_token`'
+    table: '`areas`',
+    insert_columns: '`Name`, `Width`, `Length`'
 };
 
 router.get('/', (req, res) => {
