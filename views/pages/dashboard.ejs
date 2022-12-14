@@ -18,9 +18,15 @@
     </div>
     <div id="dashboard-Contents">
         <div class="sidebar">
-            <i class="fa-solid fa-house active_page"></i>
+            <form action="/dashboard" method="get">
+                <i class="fa-solid fa-house"></i>
+            </form>
             <div id="localizeOptions">
-                <i class="fa-solid fa-satellite"></i>
+                <form action="/tags" method="get">
+                    <button type="submit">
+'                        <i class="fa-solid     fa-satellite"></i>
+'                    </button>
+                </form>
                 <i class="fa-solid fa-satellite-dish"></i>
             </div>
             <div id="userOptions">
@@ -117,153 +123,15 @@
                     </form>
                 </div>
                 <div id="tagsHistory">
-                    <div class="History Tag1">
-                        <p>Vinicius Souza</p>
+                    <% users.forEach(function(users) { %>
+                    <div class="History Tag <%= users.id %>" >
+                        <p><%= users.funcid %></p>
                         <div id="historyAction">
                             <p>16:42</p>
                             <p id="actionTaken">Saiu do Ambiente</p>
                         </div>
                     </div>
-                    <div class="History Tag1">
-                        <p>Vinicius Souza</p>
-                        <div id="historyAction">
-                            <p>16:42</p>
-                            <p id="actionTaken">Saiu do Ambiente</p>
-                        </div>
-                    </div>
-                    <div class="History Tag1">
-                        <p>Vinicius Souza</p>
-                        <div id="historyAction">
-                            <p>16:42</p>
-                            <p id="actionTaken">Saiu do Ambiente</p>
-                        </div>
-                    </div>
-                    <div class="History Tag1">
-                        <p>Vinicius Souza</p>
-                        <div id="historyAction">
-                            <p>16:42</p>
-                            <p id="actionTaken">Saiu do Ambiente</p>
-                        </div>
-                    </div>
-                    <div class="History Tag1">
-                        <p>Vinicius Souza</p>
-                        <div id="historyAction">
-                            <p>16:42</p>
-                            <p id="actionTaken">Saiu do Ambiente</p>
-                        </div>
-                    </div>
-                    <div class="History Tag1">
-                        <p>Vinicius Souza</p>
-                        <div id="historyAction">
-                            <p>16:42</p>
-                            <p id="actionTaken">Saiu do Ambiente</p>
-                        </div>
-                    </div>
-                    <div class="History Tag1">
-                        <p>Vinicius Souza</p>
-                        <div id="historyAction">
-                            <p>16:42</p>
-                            <p id="actionTaken">Saiu do Ambiente</p>
-                        </div>
-                    </div>
-                    <div class="History Tag1">
-                        <p>Vinicius Souza</p>
-                        <div id="historyAction">
-                            <p>16:42</p>
-                            <p id="actionTaken">Saiu do Ambiente</p>
-                        </div>
-                    </div>
-                    <div class="History Tag1">
-                        <p>Vinicius Souza</p>
-                        <div id="historyAction">
-                            <p>16:42</p>
-                            <p id="actionTaken">Saiu do Ambiente</p>
-                        </div>
-                    </div>
-                    <div class="History Tag1">
-                        <p>Vinicius Souza</p>
-                        <div id="historyAction">
-                            <p>16:42</p>
-                            <p id="actionTaken">Saiu do Ambiente</p>
-                        </div>
-                    </div>
-                    <div class="History Tag1">
-                        <p>Vinicius Souza</p>
-                        <div id="historyAction">
-                            <p>16:42</p>
-                            <p id="actionTaken">Saiu do Ambiente</p>
-                        </div>
-                    </div>
-                    <div class="History Tag1">
-                        <p>Vinicius Souza</p>
-                        <div id="historyAction">
-                            <p>16:42</p>
-                            <p id="actionTaken">Saiu do Ambiente</p>
-                        </div>
-                    </div>
-                    <div class="History Tag1">
-                        <p>Vinicius Souza</p>
-                        <div id="historyAction">
-                            <p>16:42</p>
-                            <p id="actionTaken">Saiu do Ambiente</p>
-                        </div>
-                    </div>
-                    <div class="History Tag1">
-                        <p>Vinicius Souza</p>
-                        <div id="historyAction">
-                            <p>16:42</p>
-                            <p id="actionTaken">Saiu do Ambiente</p>
-                        </div>
-                    </div>
-                    <div class="History Tag1">
-                        <p>Vinicius Souza</p>
-                        <div id="historyAction">
-                            <p>16:42</p>
-                            <p id="actionTaken">Saiu do Ambiente</p>
-                        </div>
-                    </div>
-                    <div class="History Tag1">
-                        <p>Vinicius Souza</p>
-                        <div id="historyAction">
-                            <p>16:42</p>
-                            <p id="actionTaken">Saiu do Ambiente</p>
-                        </div>
-                    </div>
-                    <div class="History Tag1">
-                        <p>Vinicius Souza</p>
-                        <div id="historyAction">
-                            <p>16:42</p>
-                            <p id="actionTaken">Saiu do Ambiente</p>
-                        </div>
-                    </div>
-                    <div class="History Tag1">
-                        <p>Vinicius Souza</p>
-                        <div id="historyAction">
-                            <p>16:42</p>
-                            <p id="actionTaken">Saiu do Ambiente</p>
-                        </div>
-                    </div>
-                    <div class="History Tag1">
-                        <p>Vinicius Souza</p>
-                        <div id="historyAction">
-                            <p>16:42</p>
-                            <p id="actionTaken">Saiu do Ambiente</p>
-                        </div>
-                    </div>
-                    <div class="History Tag1">
-                        <p>Vinicius Souza</p>
-                        <div id="historyAction">
-                            <p>16:42</p>
-                            <p id="actionTaken">Saiu do Ambiente</p>
-                        </div>
-                    </div>
-                    <div class="History Tag1">
-                        <p>Vinicius Souza</p>
-                        <div id="historyAction">
-                            <p>16:42</p>
-                            <p id="actionTaken">Saiu do Ambiente</p>
-                        </div>
-                    </div>
+                    <% }); %>
                 </div>
             </div>
         </div>

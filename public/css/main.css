@@ -489,6 +489,7 @@ select {
 #tagsHistory::-webkit-scrollbar {
     display: block;
     width: 0.5em;
+    cursor: pointer;
 }
 
 ::-webkit-scrollbar-track {

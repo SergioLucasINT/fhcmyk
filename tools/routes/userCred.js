@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 
 router.get('/', (req, res) => {
-  res.render('pages/tagedit4');
+  res.render('pages/login');
 });
 
 var query_data = {
@@ -118,6 +118,8 @@ router.post('/users/auth', async (req, res) => {
         // User is authenticated
 
         console.log("User is authenticated");
+
+        res.redirect('/dashboard');
 
       } else {
         res.send('Not Allowed');

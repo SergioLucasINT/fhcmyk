@@ -18,7 +18,9 @@
     </div>
     <div id="beacon" class="Menu-Contents">
         <div class="sidebar">
-            <i class="fa-solid fa-house"></i>
+            <form action="/dashboard" method="get">
+                <i class="fa-solid fa-house"></i>
+            </form>
             <div id="localizeOptions">
                 <i class="fa-solid fa-satellite"></i>
                 <i class="fa-solid fa-satellite-dish active_page"></i>
@@ -40,7 +42,7 @@
             </div>
             <div class="menu-rightside">
                 <div id="dashboard-Env">
-                    <form action="/" id="area-select">
+                    <form action="/tags/step3" id="area-select">
                         <label for="name">Nome do Usuário</label>
                         <input type="text" name="name" id="name" placeholder="Insira o nome do ambiente aqui...">
                         <label for="name">Sobrenome do Usuário</label>

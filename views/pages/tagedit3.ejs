@@ -18,7 +18,9 @@
     </div>
     <div id="beacon" class="Menu-Contents">
         <div class="sidebar">
-            <i class="fa-solid fa-house"></i>
+            <form action="/dashboard" method="get">
+                <i class="fa-solid fa-house"></i>
+            </form>
             <div id="localizeOptions">
                 <i class="fa-solid fa-satellite"></i>
                 <i class="fa-solid fa-satellite-dish active_page"></i>
@@ -33,7 +35,7 @@
                 <h1>Registro de RFID</h1>
                 <p>Certifique-se de que os pré-requisitos estão sendo devidamente atendidos. </p>
                 <div id="next-and-before">
-                    <button type="submit" form="area-select">
+                    <button type="submit" form="previous-area-select">
                         <i class="fa-solid fa-chevron-left"></i>
                     </button>
                     <button type="submit" form="area-select">
@@ -48,6 +50,8 @@
                     <a href="" download="">
                         <i class="fa-solid fa-download"></i>
                     </a>
+                    <form action="/tags/step4" method="get" id="area-select"></form>
+                    <form action="/tags/step2" method="get" id="previous-area-select"></form>
                 </div>
             </div>
         </div>

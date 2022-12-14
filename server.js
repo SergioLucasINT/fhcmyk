@@ -14,6 +14,9 @@ const userCred = require('./tools/routes/userCred.js');
 const editAreas = require('./tools/routes/editAreas.js');
 const configSteps = require('./tools/routes/configSteps.js');
 const beaconReq = require('./tools/routes/beaconReq.js');
+const dashboard = require('./tools/routes/dashboard.js');
+const tagReq = require('./tools/routes/tagReq.js');
+const regESP = require('./tools/routes/registerESP.js');
 
 
 const port = 3000;
@@ -47,3 +50,12 @@ app.use('/config', configSteps);
 
 // Beacon 
 app.use('/beacon', beaconReq);
+
+// Dashboard 
+app.use('/dashboard', dashboard);
+
+// Tags Page 
+app.use('/tags', tagReq);
+
+// Register ESP
+app.use('/registerESP', regESP);
