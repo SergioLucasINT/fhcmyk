@@ -1,34 +1,106 @@
 const express = require('express'); 
 const app = express();
+const sqlite3 = require('sqlite3').verbose();
 const router = express.Router();
 const bodyParser = require('body-parser');
+
+
+const DBPATH = 'dbUser.db';
+
+// Functions
+const functions = require('../functions/crud');
 
 app.use(express.json()); 
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 
-router.post('/', (req, res) => {
-    res.header("Access-Control-Allow-Origin", "*");
-    console.log(req);
-    console.log(req.body);
-    texto = req.body;
-    console.log(texto);
-    console.log("Recebi um dado");
-    res.send(texto);
+var query_data = {
+    table: '`login_auth`',
+    insert_columns: '`funcid`, `password`',
+    insert_columns2: '`funcid`, `password`, `user_creation_token`',
+    refresh_update: '`refresh_token`'
+};
+
+router.get('/', (req, res) => {
+    
+  var db = new sqlite3.Database(DBPATH);
+
+  db.all(functions.readNode(query_data['table'], '*'), [],  (err, users ) => {
+		if (err) {
+		    throw err;
+		}
+		console.log(users);
+        res.render('pages/beaconedit1', {users: users});
+	});
+ db.close();
+
+});
+
+router.get('/step2', (req, res) => {
+    
+    var db = new sqlite3.Database(DBPATH);
+  
+    db.all(functions.readNode(query_data['table'], '*'), [],  (err, users ) => {
+          if (err) {
+              throw err;
+          }
+          console.log(users);
+          res.render('pages/beaconedit2', {users: users});
+      });
+   db.close();
   
 });
 
-router.get('/', (req, res) => {
-res.header("Access-Control-Allow-Origin", "*");
-  console.log("Recebi a requisição de dados");
-  dados = {
-    action: 1,
-    sensor: "LED",
-    status: "OFF",
-  };
-  json = JSON.stringify(dados);
-  res.send(json);
+router.get('/step3', (req, res) => {
+    
+    var db = new sqlite3.Database(DBPATH);
+  
+    db.all(functions.readNode(query_data['table'], '*'), [],  (err, users ) => {
+          if (err) {
+              throw err;
+          }
+          console.log(users);
+          res.render('pages/beaconedit3', {users: users});
+      });
+   db.close();
+  
 });
+
+router.get('/step4', (req, res) => {
+    
+    var db = new sqlite3.Database(DBPATH);
+  
+    db.all(functions.readNode(query_data['table'], '*'), [],  (err, users ) => {
+          if (err) {
+              throw err;
+          }
+          console.log(users);
+          res.render('pages/beaconedit4', {users: users});
+      });
+   db.close();
+  
+});
+
+router.get('/step5', (req, res) => {
+    
+  var db = new sqlite3.Database(DBPATH);
+
+  db.all(functions.readNode(query_data['table'], '*'), [],  (err, users ) => {
+        if (err) {
+            throw err;
+        }
+        console.log(users);
+        res.render('pages/beaconedit5', {users: users});
+    });
+ db.close();
+
+});
+
+
+router.post('/submit', (req, res) => {
+    var db = new sqlite3.Database(DBPATH);
+}); 
+
 
 module.exports = router;
