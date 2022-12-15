@@ -33,25 +33,31 @@ router.post('/beacon', (req, res) => {
   
     db.all(functions.readNode(query_data['table'], '*'), [],  async (err, beacons ) => {
 
-            if (err) {
-                throw err;
-            }
-            console.log("Aqui");
-            console.log(beacons);
-            for (i in beacons) {
-                MACAddress.push(beacons[i].MACAddress);
-            };
-          
-            if (texto.MACAddress in MACAddress) {
-                console.log("MACAddress já existe");
-            } else {
-                console.log("MACAddress não existe");
-                db.run(functions.createNode(query_data['table'], query_data['create_columns'], 0  + ", '" + texto.name + "', '" + texto.MACAddress + "'"));
+        if (err) {
+            throw err;
+        }
+        console.log("Aqui");
+        console.log(beacons);
+        for (i in beacons) {
+            MACAddress.push(beacons[i].MACAddress);
+        };
+        
+        if (texto.MACAddress in MACAddress) {
+            console.log("MACAddress já existe");
+        } else {
+            console.log("MACAddress não existe");
+            db.run(functions.createNode(query_data['table'], query_data['create_columns'], 0  + ", '" + texto.name + "', '" + texto.MACAddress + "'"));
+            db.run(functions.createNode(query_data['table'], query_data['create_columns'], 0  + ", '" + texto.name + "', '" + texto.MACAddress + "'")), [],  async (err, beacons ) => {
+
+                if (err) {
+                    throw err;
+                }
                 console.log("MACAddress adicionado");
-            }
-            });
-            
-            console.log(MACAddress);
+            };	
+        }
+    });
+
+    console.log(MACAddress);
 
     db.close();
 });
