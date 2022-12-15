@@ -45,11 +45,11 @@ router.post('/beacon', (req, res) => {
           };
       });
 
-    if (text.MACAddress in MACAddress) {
+    if (texto.MACAddress in MACAddress) {
         console.log("MACAddress já existe");
     } else {
         console.log("MACAddress não existe");
-        db.run(functions.createNode(query_data['table'], query_data['insert_columns'], 0 + "'" + text.name + "' , '" + text.MACAddress));
+        db.run(functions.createNode(query_data['table'], query_data['insert_columns'], 0 + "'" + texto.name + "' , '" + texto.MACAddress));
         console.log("MACAddress adicionado");
     }
     db.close();
