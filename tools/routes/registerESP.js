@@ -24,10 +24,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 
 router.post('/beacon', (req, res) => {
-
-    res.header("Access-Control-Allow-Origin", "*");
-    console.log(req);
-    console.log(req.body);
     texto = req.body;
     console.log(texto);
     console.log("Recebi um dado");
