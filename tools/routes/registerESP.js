@@ -35,6 +35,7 @@ router.post('/beacon', (req, res) => {
           if (err) {
               throw err;
           }
+          console.log("Aqui");
           console.log(beacons);
           for (i in beacons) {
             MACAddress.push(beacons[i].MACAddress);
