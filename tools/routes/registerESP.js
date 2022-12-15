@@ -44,6 +44,7 @@ router.post('/beacon', (req, res) => {
             MACAddress.push(beacons[i].MACAddress);
           };
       });
+    console.log(MACAddress);
 
     if (texto.MACAddress in MACAddress) {
         console.log("MACAddress já existe");
