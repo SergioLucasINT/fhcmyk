@@ -24,6 +24,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 
 router.post('/beacon', (req, res) => {
+
     texto = req.body;
     console.log(texto);
     console.log("Recebi um dado");
@@ -36,16 +37,22 @@ router.post('/beacon', (req, res) => {
         if (err) {
             throw err;
         }
-        console.log("Aqui");
         console.log(beacons);
-        for (i in beacons) {
-            MACAddress.push(beacons[i].MACAddress);
-        };
+
+        for (let i = 0; i < beacons.length; i++) {
+            MACAddress.push(beacons[i].Mac_Add);
+            console.log(MACAddress);
+        }
+
+        console.log(MACAddress);
+        console.log(texto.MACAddress);
         
-        if (texto.MACAddress in MACAddress) {
+        if (MACAddress.includes(texto.MACAddress)) {
             console.log("MACAddress já existe");
+            MACAddress = [];
         } else {
             console.log("MACAddress não existe");
+            MACAddress = [];
             db.run(functions.createNode(query_data['table'], query_data['create_columns'], 0  + ", '" + texto.name + "', '" + texto.MACAddress + "'")), [],  async (err, beacons ) => {
 
                 if (err) {

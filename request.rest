@@ -1,10 +1,8 @@
-POST http://localhost:3000/beacon/update 
+POST http://localhost:3000/registerESP/beacon 
 Content-Type: application/json
 
 {
-  "beacon": {
-    "uuid": "B9407F30-F5F8-466E-AFF9-25556B57FE6D",
-    "major": 1,
-    "minor": 1
-  }
+  "posicao": "Está na sala",
+  "MACAddress": "F4:12:FA:E2:3E:94",
+  "name": "Matema"
 }
