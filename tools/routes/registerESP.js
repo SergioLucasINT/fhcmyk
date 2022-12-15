@@ -46,7 +46,6 @@ router.post('/beacon', (req, res) => {
             console.log("MACAddress já existe");
         } else {
             console.log("MACAddress não existe");
-            db.run(functions.createNode(query_data['table'], query_data['create_columns'], 0  + ", '" + texto.name + "', '" + texto.MACAddress + "'"));
             db.run(functions.createNode(query_data['table'], query_data['create_columns'], 0  + ", '" + texto.name + "', '" + texto.MACAddress + "'")), [],  async (err, beacons ) => {
 
                 if (err) {
