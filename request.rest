@@ -1,44 +1,10 @@
-GET http://localhost:3000/users
-
-### 
-
-POST http://localhost:3000/users/register
+POST http://localhost:3000/beacon/update 
 Content-Type: application/json
 
 {
-    "funcid" : "admoin",
-    "password": "passdsaword",
-    "user_creation_token": "1234"
+  "beacon": {
+    "uuid": "B9407F30-F5F8-466E-AFF9-25556B57FE6D",
+    "major": 1,
+    "minor": 1
+  }
 }
-
-###
-
-POST http://localhost:3000/users/auth
-Content-Type: application/json
-
-{
-    "funcid" : "admin",
-    "password": "password"
-}
-
-### 
-
-POST http://localhost:3000/users/token
-Content-Type: application/json
-
-{
-    "user" : "admin"
-}
-
-###
-
-POST http://localhost:3000/users/new
-content-type: application/json
-
-{
-    "user_creation_token": "1234"
-}
-
-###
-
-GET http://localhost:3000/beacon

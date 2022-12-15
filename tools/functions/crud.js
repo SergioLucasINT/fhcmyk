@@ -18,7 +18,7 @@ function readNode(table, columns, condition) {
 
 // Update
 function updateNode(table, columns, values, condition) {
-    var sql = "UPDATE " + table + " SET " + columns + " = " + "'" + values + "'" + " WHERE " + condition;
+    var sql = "UPDATE " + table + " SET (" + columns + ") = " + "('" + values + "')" + " WHERE " + condition;
     console.log(sql);
     return sql;
 }

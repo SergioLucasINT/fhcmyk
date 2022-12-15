@@ -4,6 +4,7 @@ const sqlite3 = require('sqlite3').verbose();
 const router = express.Router();
 const bodyParser = require('body-parser');
 
+let AreaID; 
 
 const DBPATH = 'dbUser.db';
 
@@ -17,8 +18,67 @@ app.set('view engine', 'ejs');
 
 var query_data = {
     table: '`areas`',
-    insert_columns: '`Name`, `Width`, `Length`'
+    table2: '`beacons`',
+    step1_columns: '`Name`, `Width`, `Length`, `BeaconModel`',
+    create_new: 'Name, Width, Length, BeaconModel'
 };
+
+router.post('/connect', (req, res) => {
+  console.log(AreaID);
+  console.log(req.body);
+
+  var db = new sqlite3.Database(DBPATH);
+
+  let value;
+
+  console.log(req.body.action);
+
+  if (req.body.action == "disconnect") {
+    value = 0;
+  } else {
+    value = AreaID;
+  }
+  
+  db.run(functions.updateNode(query_data['table2'], `Reg_Area`, value, "ID = " + req.body.beacon_id), [], function(err) {
+    if (err) {
+      return console.error(err.message);
+    }
+    console.log(`Rows inserted ${this.changes}`);
+  
+  db.close();
+  });
+
+  res.redirect("/beacon/step4");
+
+});
+
+router.post('/create-new', (req, res) => {
+    
+  var db = new sqlite3.Database(DBPATH);
+
+  db.run(functions.createNode(query_data['table'], query_data['create_new'], "0,0,0,0" ), [], function(err) {
+    if (err) {
+      return console.error(err.message);
+    }
+    console.log(`Rows inserted ${this.changes}`);
+  
+  db.close();
+  });
+
+  db.all(functions.readNode(query_data['table'], '*'), [],  (err, users ) => {
+		if (err) {
+		    throw err;
+		}
+    let new_id = users[users.length - 1].ID;
+
+    AreaID = new_id;
+
+    console.log("/beacon/step2?AreaID="+new_id);
+
+    res.redirect("/beacon/step2?AreaID="+new_id);
+	});
+
+});
 
 router.get('/', (req, res) => {
     
@@ -39,18 +99,36 @@ router.get('/step2', (req, res) => {
     
     var db = new sqlite3.Database(DBPATH);
   
-    db.all(functions.readNode(query_data['table'], '*'), [],  (err, users ) => {
+    db.all(functions.readNode(query_data['table'], AreaID), [],  (err, beacon ) => {
           if (err) {
               throw err;
           }
-          console.log(users);
-          res.render('pages/beaconedit2', {users: users});
+          console.log(beacon);
+          res.render('pages/beaconedit2', {beacon: beacon});
       });
    db.close();
   
 });
 
+router.post('/update', (req, res) => {
+
+  console.log(req.body);
+
+  var db = new sqlite3.Database(DBPATH);
+
+  db.run(functions.updateNode(query_data['table'], query_data['step1_columns'], req.body.name + "', '" + req.body.comprimento + "', '" + req.body.largura + "', '" + req.body.BeaconModel, "id=" + AreaID), [], (err, beacon) => {
+    if (err) {
+      return console.error(err);
+    }
+    console.log(beacon);
+    res.redirect('/beacon/step3');
+  });
+  db.close();
+});
+
 router.get('/step3', (req, res) => {
+
+    console.log(req.body);
     
     var db = new sqlite3.Database(DBPATH);
   
@@ -69,12 +147,12 @@ router.get('/step4', (req, res) => {
     
     var db = new sqlite3.Database(DBPATH);
   
-    db.all(functions.readNode(query_data['table'], '*'), [],  (err, users ) => {
+    db.all(functions.readNode(query_data['table2'], '*'), [],  (err, beacons ) => {
           if (err) {
               throw err;
           }
-          console.log(users);
-          res.render('pages/beaconedit4', {users: users});
+          console.log(beacons);
+          res.render('pages/beaconedit4', {beacons: beacons, area_ID: AreaID});
       });
    db.close();
   

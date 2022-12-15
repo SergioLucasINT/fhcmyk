@@ -835,3 +835,7 @@ p {
 #userInfo form input {
     height: 50%;
 }
+
+.cancel {
+    background-color: var(--Red);
+}

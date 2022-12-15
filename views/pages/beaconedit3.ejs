@@ -33,10 +33,10 @@
                 <h1>Conexão com Beacons</h1>
                 <p>Certifique-se de que os pré-requisitos estão sendo devidamente atendidos.</p>
                 <div id="next-and-before">
-                    <button type="submit" form="area-select">
+                    <button type="submit" form="previous-area">
                         <i class="fa-solid fa-chevron-left"></i>
                     </button>
-                    <button type="submit" form="area-select">
+                    <button type="submit" form="next-area">
                         <i class="fa-solid fa-chevron-right"></i>
                     </button>
                 </div>
@@ -52,5 +52,7 @@
             </div>
         </div>
     </div>
+    <form action="/beacon/step4" method="get" id="next-area"></form>
+    <form action="/beacon/step2" method="get" id="previous-area"></form>
 </body>
 </html>

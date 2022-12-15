@@ -43,72 +43,24 @@
             </div>
             <div class="menu-rightside">
                 <div id="connectedTags">
-                    <div class="connectedTags Tag1">
-                        <p>Beacon</p>
-                        <form action="">
-                            <input type="submit" value="Conectar">
+                    <% beacons.forEach(function(beacon) { %>
+                    <% if (beacon.Reg_Area == 0 || beacon.Reg_Area == area_ID) { %>
+                    <div class="connectedTags <%= beacon.Mac_Add %>">
+                        <p><%= beacon.Name %></p>
+                        <form action="/beacon/connect" method="post">
+                            <% if(beacon.Reg_Area == area_ID) { %>
+                                <input type="submit" value="Desconectar" class="cancel">
+                                <input type="hidden" name="action" value="disconnect">
+                                <input type="hidden" name="beacon_id" value=<%= beacon.ID %>>
+                            <% } else { %>
+                            <input type="submit" value="Registrar">
+                            <input type="hidden" name="beacon_id" value=<%= beacon.ID %>>
+                            <input type="hidden" name="action" value="connect">
+                            <% } %>
                         </form>
                     </div>
-                    <div class="connectedTags Tag1">
-                        <p>Beacon</p>
-                        <form action="">
-                            <input type="submit" value="Conectar">
-                        </form>
-                    </div>
-                    <div class="connectedTags Tag1">
-                        <p>Beacon</p>
-                        <form action="">
-                            <input type="submit" value="Conectar">
-                        </form>
-                    </div>
-                    <div class="connectedTags Tag1">
-                        <p>Beacon</p>
-                        <form action="">
-                            <input type="submit" value="Conectar">
-                        </form>
-                    </div>
-                    <div class="connectedTags Tag1">
-                        <p>Beacon</p>
-                        <form action="">
-                            <input type="submit" value="Conectar">
-                        </form>
-                    </div>
-                    <div class="connectedTags Tag1">
-                        <p>Beacon</p>
-                        <form action="">
-                            <input type="submit" value="Conectar">
-                        </form>
-                    </div>
-                    <div class="connectedTags Tag1">
-                        <p>Beacon</p>
-                        <form action="">
-                            <input type="submit" value="Conectar">
-                        </form>
-                    </div>
-                    <div class="connectedTags Tag1">
-                        <p>Beacon</p>
-                        <form action="">
-                            <input type="submit" value="Conectar">
-                        </form>
-                    </div>
-                    <div class="connectedTags Tag1">
-                        <p>Beacon</p>
-                        <form action="">
-                            <input type="submit" value="Conectar">
-                        </form>
-                    </div>
-                    <div class="connectedTags Tag1">
-                        <p>Beacon</p>
-                        <form action="">
-                            <input type="submit" value="Conectar">
-                        </form>
-                    </div>
-                    <div class="connectedTags Tag1">
-                        <p>Beacon</p>
-                        <form action="">
-                            <input type="submit" value="Conectar">
-                        </form>
-                    </div>
+                    <% } %>
+                    <% }); %>
                 </div>
             </div>
         </div>
