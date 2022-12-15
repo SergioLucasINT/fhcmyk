@@ -6,3 +6,15 @@ Content-Type: application/json
   "MACAddress": "F4:12:FA:E2:3E:94",
   "name": "Matema"
 }
+
+### 
+
+
+POST https://mn8owe-3000.preview.csb.app/registerESP/beacon 
+Content-Type: application/json
+
+{
+  "posicao": "Está na sala",
+  "MACAddress": "F4:12:FA:E2:3E:94",
+  "name": "Matema"
+}
