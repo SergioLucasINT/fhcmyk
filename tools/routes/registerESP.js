@@ -50,14 +50,10 @@ router.post('/beacon', (req, res) => {
         console.log("MACAddress já existe");
     } else {
         console.log("MACAddress não existe");
-        res.redirect('/registerESP/create-new-beacon');
+        db.run(functions.createNode(query_data['table'], query_data['create_columns'], 0  + ", '" + texto.name + "', '" + texto.MACAddress + "'"));
+        console.log("MACAddress adicionado");
     }
     db.close();
-});
-
-router.post('/create-new-beacon', (req, res) => {
-    db.run(functions.createNode(query_data['table'], query_data['create_columns'], 0  + ", '" + texto.name + "', '" + texto.MACAddress + "'"));
-    console.log("MACAddress adicionado");
 });
 
 router.get('/beacon', (req, res) => {
