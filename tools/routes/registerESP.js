@@ -31,25 +31,28 @@ router.post('/beacon', (req, res) => {
     
     var db = new sqlite3.Database(DBPATH);
   
-    db.all(functions.readNode(query_data['table'], '*'), [],  (err, beacons ) => {
-          if (err) {
-              throw err;
-          }
-          console.log("Aqui");
-          console.log(beacons);
-          for (i in beacons) {
-            MACAddress.push(beacons[i].MACAddress);
-          };
-      });
-    console.log(MACAddress);
+    db.all(functions.readNode(query_data['table'], '*'), [],  async (err, beacons ) => {
 
-    if (texto.MACAddress in MACAddress) {
-        console.log("MACAddress já existe");
-    } else {
-        console.log("MACAddress não existe");
-        db.run(functions.createNode(query_data['table'], query_data['create_columns'], 0  + ", '" + texto.name + "', '" + texto.MACAddress + "'"));
-        console.log("MACAddress adicionado");
-    }
+            if (err) {
+                throw err;
+            }
+            console.log("Aqui");
+            console.log(beacons);
+            for (i in beacons) {
+                MACAddress.push(beacons[i].MACAddress);
+            };
+          
+            if (texto.MACAddress in MACAddress) {
+                console.log("MACAddress já existe");
+            } else {
+                console.log("MACAddress não existe");
+                db.run(functions.createNode(query_data['table'], query_data['create_columns'], 0  + ", '" + texto.name + "', '" + texto.MACAddress + "'"));
+                console.log("MACAddress adicionado");
+            }
+            });
+            
+            console.log(MACAddress);
+
     db.close();
 });
 
