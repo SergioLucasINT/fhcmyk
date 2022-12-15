@@ -3,6 +3,7 @@
 // Create
 function createNode(table, columns, values) {
     var sql = "INSERT INTO " + table + " (" + columns + ") VALUES (" + values + ")";
+    console.log(sql);
     return sql;
 }
 
