@@ -25,7 +25,7 @@ var query_data = {
     create_new: 'Name, Width, Length, BeaconModel'
 };
 
-router.post('/connect', (req, res) => {
+router.post('/connect', (req, res) => { // Conectar o beacon na área 
   console.log(AreaID);
   console.log(req.body);
 
