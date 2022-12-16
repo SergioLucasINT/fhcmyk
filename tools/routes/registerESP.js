@@ -60,8 +60,8 @@ router.post("/tags", (req, res) => {
         console.log("MACAddress não existe");
         db.run(
           functions.createNode(
-            query_data["table"],
-            query_data["create_columns"],
+            query_data["table2"],
+            query_data["create_columns2"],
             0 + ", '" + texto.name + "', '" + texto.MACAddress + "'"
           )
         ),

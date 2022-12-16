@@ -10,11 +10,12 @@ Content-Type: application/json
 ### 
 
 
-POST https://mn8owe-3000.preview.csb.app/registerESP/beacon 
+POST https://yuzr0k-3000.preview.csb.app/registerESP/tags 
 Content-Type: application/json
 
 {
+  "RFID": "1234567890",
   "posicao": "Está na sala",
   "MACAddress": "F4:12:FA:E2:3E:94",
-  "name": "Matema"
+  "name": "tag1"
 }
