@@ -62,7 +62,7 @@ router.post("/tags", (req, res) => {
           functions.createNode(
             query_data["table2"],
             query_data["create_columns2"],
-            0 + ", '" + texto.name + "', '" + texto.MACAddress + "'"
+            + texto.name + "', '" + texto.MACAddress + "'"
           )
         ),
           [],
