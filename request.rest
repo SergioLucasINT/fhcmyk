@@ -14,7 +14,7 @@ POST https://yuzr0k-3000.preview.csb.app/registerESP/tags
 Content-Type: application/json
 
 {
-  "RFID": "1234567890",
+  "RFID": "3343",
   "posicao": "Está na sala",
   "MACAddress": "F4:12:FA:E2:3E:94",
   "name": "tag1"
