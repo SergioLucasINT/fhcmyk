@@ -118,27 +118,38 @@ router.post("/tags", (req, res) => {
             });
         } else if (texto.position || texto.area_ID != 0) {
 
-            let date = new Date();
-            let year = date.getFullYear();
-            let month = date.getMonth();
-            let day = date.getDay();
-            let time = date.toLocaleTimeString();
-            if (day < 10) {
-                day = "0" + day;
-            }
-            let current_date = `${day} / ${month} / ${year}`;
-
-            console.log(current_date);
-            console.log(time);
-
-            db.all(functions.createNode(query_data["table5"], query_data["create_columns3"], "'" + current_date + "', '" + texto.area_ID + "', '" + time + "', '" + texto.user_ID + "', '" + texto.position + "'"), [], async (err, user) => {
+            db.all(functions.readNode(query_data["table5"], "*", "userid = '" + texto.user_ID + "'"), [], async (err, history) => {
                 if (err) {
                     throw err;
                 }
-                if (texto.position == "In") {
-                    console.log("Entrada Registrada");
+                let latestValue = history[history.length - 1].state;
+                if (latestValue == texto.position) {
+                    console.log("Posição já registrada");
                 } else {
-                    console.log("Saída Registrada");
+                    
+                    let date = new Date();
+                    let year = date.getFullYear();
+                    let month = date.getMonth();
+                    let day = date.getDay();
+                    let time = date.toLocaleTimeString();
+                    if (day < 10) {
+                        day = "0" + day;
+                    }
+                    let current_date = `${day} / ${month} / ${year}`;
+        
+                    console.log(current_date);
+                    console.log(time);
+        
+                    db.all(functions.createNode(query_data["table5"], query_data["create_columns3"], "'" + current_date + "', '" + texto.area_ID + "', '" + time + "', '" + texto.user_ID + "', '" + texto.position + "'"), [], async (err, user) => {
+                        if (err) {
+                            throw err;
+                        }
+                        if (texto.position == "In") {
+                            console.log("Entrada Registrada");
+                        } else {
+                            console.log("Saída Registrada");
+                        }
+                    });
                 }
             });
         };
