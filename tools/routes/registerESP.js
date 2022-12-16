@@ -116,7 +116,7 @@ router.post("/tags", (req, res) => {
                         });
                     }
             });
-        } else if (texto.position || texto.area_ID != 0) {
+        } else if (texto.position && texto.area_ID != 0) {
 
             db.all(functions.readNode(query_data["table5"], "*", "userid = '" + texto.user_ID + "'"), [], async (err, history) => {
                 if (err) {
@@ -126,7 +126,7 @@ router.post("/tags", (req, res) => {
                 if (latestValue == texto.position) {
                     console.log("Posição já registrada");
                 } else {
-                    
+
                     let date = new Date();
                     let year = date.getFullYear();
                     let month = date.getMonth();

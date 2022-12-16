@@ -119,7 +119,7 @@ router.post('/users/auth', async (req, res) => {
 
         console.log("User is authenticated");
 
-        res.redirect('/dashboard');
+        res.redirect('/dashboard/id = 0/date = 0');
 
       } else {
         res.send('Not Allowed');
