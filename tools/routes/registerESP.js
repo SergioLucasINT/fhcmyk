@@ -41,15 +41,15 @@ router.post("/tags", (req, res) => {
   db.all(
     functions.readNode(query_data["table2"], "*"),
     [],
-    async (err, beacons) => {
+    async (err, tags) => {
       if (err) {
         throw err;
       }
 
-      for (let i = 0; i < beacons.length; i++) {
+      for (let i = 0; i < tags.length; i++) {
         if (MACAddress.includes(texto.MACAddress)) {
         } else {
-          MACAddress.push(beacons[i].Mac_Add);
+          MACAddress.push(tags[i].MacAddress);
         }
       }
 
