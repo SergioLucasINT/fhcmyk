@@ -22,6 +22,7 @@ var query_data = {
   table: "`beacons`",
   table2: "`tags`",
   create_columns: "`Reg_Area`, `Name`, `Mac_Add`",
+  create_columns2: "`Name`, `MacAddress`"
 };
 
 app.use(express.json());
@@ -38,7 +39,7 @@ router.post("/tags", (req, res) => {
   var db = new sqlite3.Database(DBPATH);
 
   db.all(
-    functions.readNode(query_data["table"], "*"),
+    functions.readNode(query_data["table2"], "*"),
     [],
     async (err, beacons) => {
       if (err) {
