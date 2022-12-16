@@ -10,7 +10,7 @@ Content-Type: application/json
 ### 
 
 
-POST https://yuzr0k-3000.preview.csb.app/registerESP/tags 
+POST https://6qwj4p-3000.preview.csb.app/registerESP/tags 
 Content-Type: application/json
 
 {
@@ -22,9 +22,26 @@ Content-Type: application/json
 
 ###
 
-POST https://localhost:3000/beacon/edit-existing
+POST http://localhost:3000/beacon/edit-existing
 Content-Type: application/json
 
 {
   "AreaID"
 }
+
+###
+
+POST http://localhost:3000/registerESP/tags 
+Content-Type: application/json
+
+{
+  "position": "In",
+  "area_ID": 42, 
+  "user_ID": 1234,
+  "MACAddress": "F4:12:FA:E2:3E:94",
+  "name": "tag1"
+}
+
+###
+
+GET http://localhost:3000/registerESP/beacon

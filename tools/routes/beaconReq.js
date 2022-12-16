@@ -8,6 +8,8 @@ let AreaID;
 
 const DBPATH = 'dbUser.db';
 
+let dados = {};
+
 // Functions
 const functions = require('../functions/crud');
 
