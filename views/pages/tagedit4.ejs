@@ -44,20 +44,36 @@
                 <div id="userInfo">
                     <form action="/" id="area-select">
                         <label for="name">Nome do Usuário</label>
-                        <input disabled type="text"  name="name" id="name" value="Vinicius">
+                        <input disabled type="text"  name="name" id="name" value="<%= user[0].FirstName + " " + user[0].LastName %>">
                         <label for="name">Número de Identificação</label>
-                        <input disabled type="text" name="name" id="name" value="ATECH202020">
+                        <input disabled type="text" name="name" id="name" value="<%= user[0].funcid %>">
                         <label for="name">Código do RFID</label>
-                        <input disabled type="text" name="name" id="name" value="F4:C3:E2:R4:I7">
+                        <input disabled type="text" name="name" id="name" 
+                        <% if (user[0].RFID != 0) { %>
+                            value= "<%= user[0].RFID %>"
+                       <% } else { %>
+                            value="Aguardando RFID..."
+                        <% } %>
+                        >
                     </form>
                 </div>
                 <div id="next-and-before">
                     <form action="">
-                        <button type="submit">Deletar Ambiente</button>
+                        <button type="submit">Deletar Usuário</button>
                     </form>
-                    <form action="">
-                        <button type="submit">Finalizar Edição</button>
+                    <% if (user[0].RFID != 0) { %>
+                        <form action="/tags/end">
+                            <button type="submit">Finalizar Edição</button>
+                        </form>
+                   <% } else if (user[0].register == 0) { %>
+                    <form action="/tags/RFID" method="POST">
+                        <button type="submit">Requisição RFID</button>
                     </form>
+                    <% } else { %>
+                        <form action="/tags/step4" >
+                            <button type="submit">Checar alterações</button>
+                        </form>
+                    <% } %>
                 </div>
             </div>
         </div>

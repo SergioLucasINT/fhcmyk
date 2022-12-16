@@ -21,8 +21,10 @@ const functions = require("../functions/crud");
 var query_data = {
   table: "`beacons`",
   table2: "`tags`",
+  table3: "`users`",
   create_columns: "`Reg_Area`, `Name`, `Mac_Add`",
-  create_columns2: "`Name`, `MacAddress`"
+  create_columns2: "`Name`, `MacAddress`",
+  rfid_columns: "`RFID`"
 };
 
 app.use(express.json());
@@ -31,6 +33,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 
 router.post("/tags", (req, res) => {
+
   texto = req.body;
   console.log(texto);
   console.log("Recebi um dado");
@@ -55,7 +58,40 @@ router.post("/tags", (req, res) => {
 
       if (MACAddress.includes(texto.MACAddress)) {
         console.log("MACAddress já existe");
-        dados[texto.MACAddress] = 1;
+
+        if(texto.RFID) {
+            db.all(
+                functions.readNode(query_data["table3"], "*", "register = 1"),
+                [],
+                async (err, users) => {
+                  if (err) {
+                    throw err;
+                  }
+                for (let i = 0; i < users.length; i++) {
+                    if (users[i].RFID == 0) {
+                        db.run(
+                            functions.updateNode(
+                                query_data["table3"],
+                                query_data["rfid_columns"],
+                                texto.RFID, 
+                                "ID = " + users[i].ID
+                            )
+                        ),
+                            [],
+                            async (err, user) => {
+                                if (err) {
+                                    throw err;
+                                }
+                                console.log("RFID adicionado");
+                                console.log(user);
+                                i = users.length;
+                            };
+                    }
+                }
+                });
+        }
+
+        dados[texto.MACAddress] = 0;
       } else {
         console.log("MACAddress não existe");
         db.run(
@@ -71,7 +107,7 @@ router.post("/tags", (req, res) => {
               throw err;
             }
             console.log("MACAddress adicionado");
-            dados[texto.MACAddress] = 1;
+            dados[texto.MACAddress] = 0;
           };
       }
     }
@@ -135,6 +171,12 @@ router.get("/beacon", (req, res) => {
   console.log("Recebi a requisição de dados");
   json = JSON.stringify(dados);
   res.send(json);
+});
+
+router.get("/tag", (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    console.log("Recebi a requisição de dados");
+    res.redirect("/tags/RFID"); 
 });
 
 module.exports = router;

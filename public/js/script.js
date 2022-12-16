@@ -102,3 +102,10 @@ function submitForm() {
   document.getElementById("area-select").submit();
 };
 
+function submitForm2() {
+  var select = document.getElementsByName("userID")[0];
+  var selectedOption = select.options[select.selectedIndex].value;
+  console.log(selectedOption); // log the value of the selected option to the console
+  document.getElementById("area-select").submit();
+};
+

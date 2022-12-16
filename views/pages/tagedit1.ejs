@@ -37,16 +37,17 @@
             </div>
             <div class="menu-rightside">
                 <div id="dashboard-Env">
-                    <form action="/" id="area-select">
+                    <form action="/tags/edit-existing" id="area-select" id="area-select" method="post">
                         <label for="area-dropdown">Usuário</label>
-                        <select name="" id="area-dropdown" form="area-select">
-                            <option value="area1">Vinicius Souza</option>
+                        <select name="userID" id="area-dropdown" form="area-select" onchange="submitForm2()">
+                            <% users.forEach(function(users) { %> 
+                            <option value="<%= users.ID %>"><%= users.FirstName + " " + users.LastName %></option>                            <% }); %>
                         </select>
                     </form>
                 </div>
                 <p>Ou</p>
                 <div id="userForms">
-                    <form action="/tags/step2" method="get">
+                    <form action="/tags/create-new" method="post">
                         <button type="submit">Registrar novo Funcionário</button>
                     </form>
                 </div>
