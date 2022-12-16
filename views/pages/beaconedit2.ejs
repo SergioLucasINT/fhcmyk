@@ -46,11 +46,23 @@
                             <option value="ESP32S3">ESP32S3</option>
                         </select>
                         <label for="name">Nome do Ambiente</label>
-                        <input type="text" name="name" id="name" placeholder="Insira o nome do ambiente aqui...">
+                        <input type="text" name="name" id="name" placeholder="Insira o nome do ambiente aqui..." 
+                        <% if (area[0].Name != 0) { %>
+                        value = "<%= area[0].Name %>"
+                        <% } %>
+                        >
                         <label for="largura">Largura do Ambiente (metros)</label>
-                        <input type="text" name="largura" id="name" placeholder="Insira a largura do ambiente aqui...">
+                        <input type="text" name="largura" id="name" placeholder="Insira a largura do ambiente aqui..." 
+                        <% if (area[0].Width != 0) { %>
+                            value = "<%= area[0].Width %>"
+                            <% } %>
+                        >
                         <label for="comprimento">Comprimento do Ambiente (metros)</label>
-                        <input type="text" name="comprimento" id="name" placeholder="Insira o comprimento do ambiente aqui...">
+                        <input type="text" name="comprimento" id="name" placeholder="Insira o comprimento do ambiente aqui..."
+                        <% if (area[0].Length != 0) { %>
+                            value = "<%= area[0].Length %>"
+                            <% } %>
+                        >
                     </form>
                 </div>
             </div>

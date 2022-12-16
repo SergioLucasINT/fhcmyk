@@ -80,16 +80,22 @@ router.post('/create-new', (req, res) => {
 
 });
 
+router.post('/edit-existing', (req, res) => {
+  console.log(req.body);
+  AreaID = req.body.areaID;
+  res.redirect("/beacon/step2?AreaID="+AreaID);
+});
+
 router.get('/', (req, res) => {
-    
+  
   var db = new sqlite3.Database(DBPATH);
 
-  db.all(functions.readNode(query_data['table'], '*'), [],  (err, users ) => {
+  db.all(functions.readNode(query_data['table'], '*'), [],  (err, areas ) => {
 		if (err) {
 		    throw err;
 		}
-		console.log(users);
-        res.render('pages/beaconedit1', {users: users});
+		console.log(areas);
+    res.render('pages/beaconedit1', {areas: areas});
 	});
  db.close();
 
@@ -99,12 +105,12 @@ router.get('/step2', (req, res) => {
     
     var db = new sqlite3.Database(DBPATH);
   
-    db.all(functions.readNode(query_data['table'], AreaID), [],  (err, beacon ) => {
+    db.all(functions.readNode(query_data['table'], "*", "ID = " + AreaID), [],  (err, area ) => {
           if (err) {
               throw err;
           }
-          console.log(beacon);
-          res.render('pages/beaconedit2', {beacon: beacon});
+          console.log(area);
+          res.render('pages/beaconedit2', {area: area});
       });
    db.close();
   

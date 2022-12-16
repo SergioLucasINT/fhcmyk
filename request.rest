@@ -19,3 +19,12 @@ Content-Type: application/json
   "MACAddress": "F4:12:FA:E2:3E:94",
   "name": "tag1"
 }
+
+###
+
+POST https://localhost:3000/beacon/edit-existing
+Content-Type: application/json
+
+{
+  "AreaID"
+}

@@ -35,10 +35,11 @@
             </div>
             <div class="menu-rightside">
                 <div id="dashboard-Env">
-                    <form action="/" id="area-select">
+                    <form action="beacon/edit-existing" id="area-select" method="post">
                         <label for="area-dropdown">Ambiente</label>
-                        <select name="" id="area-dropdown" form="area-select">
-                            <option value="area1"> Area 1</option>
+                        <select name="areaID" id="area-dropdown" form="area-select" onchange="submitForm()">
+                            <% areas.forEach(function(areas) { %> 
+                            <option value="<%= areas.ID %>"><%= areas.Name %></option>                            <% }); %>
                         </select>
                     </form>
                 </div>

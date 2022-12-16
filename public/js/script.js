@@ -95,3 +95,10 @@ buttons.forEach(button => {
   })
 })
 
+function submitForm() {
+  var select = document.getElementsByName("areaID")[0];
+  var selectedOption = select.options[select.selectedIndex].value;
+  console.log(selectedOption); // log the value of the selected option to the console
+  document.getElementById("area-select").submit();
+};
+
